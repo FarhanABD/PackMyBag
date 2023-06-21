@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ThinkBook/StudioProjects/PackMybag/app/src/main/res/drawable/border_one.xml" value="0.1" />
         <entry key="..\:/Users/ThinkBook/StudioProjects/PackMybag/app/src/main/res/layout/activity_check_list.xml" value="0.2" />
         <entry key="..\:/Users/ThinkBook/StudioProjects/PackMybag/app/src/main/res/layout/activity_main.xml" value="0.1859375" />
+        <entry key="..\:/Users/ThinkBook/StudioProjects/PackMybag/app/src/main/res/layout/check_list_item.xml" value="0.1" />
         <entry key="..\:/Users/ThinkBook/StudioProjects/PackMybag/app/src/main/res/layout/main_item.xml" value="0.19895833333333332" />
       </map>
     </option>
