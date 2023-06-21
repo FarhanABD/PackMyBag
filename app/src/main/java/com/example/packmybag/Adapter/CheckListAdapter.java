@@ -1,6 +1,8 @@
 package com.example.packmybag.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,6 +88,27 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListViewHolder>{
                     }
                     toastMessage.show();
                 }
+            }
+        });
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(context)
+                .setTitle("Delete( "+itemsList.get(position).getItemname()+") ")
+                        .setMessage("Are You Sure ?")
+                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                database.mainDao().delete(itemsList.get(position));
+                                itemsList.remove(itemsList.get(position));
+                                notifyDataSetChanged();
+                            }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+
+                            }
+                        }).setIcon(R.drawable.ic_baseline_delete_forever_24).show();
             }
         });
     }
