@@ -24,8 +24,7 @@
         android:background="#A0D8B3"
         >
 
-        <EditText
-          
+        <EditText/>
 
 
     </LinearLayout>
