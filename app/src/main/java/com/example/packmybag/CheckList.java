@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.packmybag.Adapter.CheckListAdapter;
 import com.example.packmybag.Constants.MyConstants;
@@ -43,6 +45,40 @@ public class CheckList extends AppCompatActivity {
 
         getSupportActionBar().setTitle(header);
 
+        txtAdd.findViewById(R.id.txtAdd);
+        btnAdd.findViewById(R.id.btnAdd);
+        recyclerView.findViewById(R.id.recyclerview);
+        linearLayout.findViewById(R.id.linearLayout);
+
+        database = RoomDB.getInstance(this);
+
+        if(MyConstants.FALSE_STRING.equals(show)){
+            linearLayout.setVisibility(View.GONE);
+            itemsList = database.mainDao().getAllSelected(true);
+        } else {
+            itemsList = database.mainDao().getAll(header);
+        }
+        updateRecycler(itemsList);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemName = txtAdd.getText().toString();
+                if (itemName!=null && !itemName.isEmpty()){
+                    addNewItem(itemName);
+                    Toast.makeText(CheckList.this, "Item Succesfully Added", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(CheckList.this, "Empty Cant be Added", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void addNewItem(String itemName){
@@ -52,6 +88,7 @@ public class CheckList extends AppCompatActivity {
         item.setItemname(itemName);
         item.setAddedby(MyConstants.USER_SMALL);
         database.mainDao().saveItem(item);
+        itemsList = database.mainDao().getAll(header);
         updateRecycler(itemsList);
         recyclerView.scrollToPosition(checkListAdapter.getItemCount()-1);
         txtAdd.setText("");

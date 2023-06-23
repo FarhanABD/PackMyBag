@@ -25,6 +25,7 @@
         >
 
         <EditText
+            android:id="@+id/txtAdd"
             android:layout_width="0dp"
             android:layout_weight="5"
             android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
             />
 
         <Button
+            android:id="@+id/btnAdd"
             android:layout_width="0dp"
             android:layout_weight="0.7"
             android:layout_height="wrap_content"
